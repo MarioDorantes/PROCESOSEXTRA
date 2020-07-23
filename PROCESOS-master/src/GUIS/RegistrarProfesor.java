@@ -124,6 +124,8 @@ public class RegistrarProfesor extends javax.swing.JFrame {
 
         jTextFieldFechaNacimiento.setText("Día - Mes - Año");
         getContentPane().add(jTextFieldFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 330, 30));
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

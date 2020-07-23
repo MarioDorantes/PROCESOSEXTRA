@@ -117,13 +117,15 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
         getContentPane().add(jButtonEliminarProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 210, 60));
 
         jButtonCerrarSesion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButtonCerrarSesion.setText("Cerrar Sesión");
+        jButtonCerrarSesion.setText("Salir");
         jButtonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCerrarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, -1, 30));
+        getContentPane().add(jButtonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, -1, 30));
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 460));
 
         pack();
@@ -162,8 +164,6 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEliminarProfesorActionPerformed
 
     private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
-       IniciarSesion regresarIniciarSesion = new IniciarSesion();
-       regresarIniciarSesion.setVisible(true);
        dispose();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 

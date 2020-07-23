@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 
 
 public class ConnectDB {
-    private static String url = "jdbc:mysql://localhost:3306/ssdc?serverTimezone=US/Central";
+    private static String url = "jdbc:mysql://localhost:3308/baseProcesos?serverTimezone=US/Central";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String username = "root";
-    private static String password = "12345";
+    private static String username = "user2";
+    private static String password = "password1";
     private static Connection con;
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
