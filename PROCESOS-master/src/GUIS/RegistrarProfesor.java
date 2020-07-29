@@ -4,8 +4,10 @@
 package GUIS;
 
 import DataAccess.DocenteDAO;
+import Dominio.Docente;
 import LogicaDeNegocio.ValidacionesDeRegistroDeUsuario;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -122,7 +124,7 @@ public class RegistrarProfesor extends javax.swing.JFrame {
         jLabelFechaNaciemiento.setText("Fecha de Nacimiento :");
         getContentPane().add(jLabelFechaNaciemiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
-        jTextFieldFechaNacimiento.setText("Día - Mes - Año");
+        jTextFieldFechaNacimiento.setText("día/mes/año");
         getContentPane().add(jTextFieldFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 330, 30));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpg"))); // NOI18N
@@ -189,7 +191,7 @@ public class RegistrarProfesor extends javax.swing.JFrame {
                              && (usuario.validarNumeroDePersonal(numeroDePersonal)== true) && (usuario.validarCURP(curp)==true)
                                     && (usuario.validarGenero(genero)==true) && (usuario.validarCorreo(correo) == true)
                                             && (usuario.validarContraseña(contraseña)==true) && (usuario.validarRFC(rfc)==true)){
-                                                guardarProfesor(numeroDePersonal, nombreProfesor, apellidoMaterno, apellidoPaterno, curp, rfc, fechaNacimiento, genero, contraseña, correo);
+                                                    validarInformaciónRepetida();
            }else if(usuario.validarNombre(nombreProfesor) == false){
                JOptionPane.showMessageDialog(this, "Verificar nombre");
            }else if(usuario.validarNombre(apellidoPaterno)==false){
@@ -197,7 +199,7 @@ public class RegistrarProfesor extends javax.swing.JFrame {
            }else if(usuario.validarNombre(apellidoPaterno)==false){
                JOptionPane.showMessageDialog(this, "Verificar apellido materno");
            }else if(usuario.validarFecha(fechaNacimiento)==false){
-               JOptionPane.showMessageDialog(this, "Verificar que la fecha sea día-mes-año");
+               JOptionPane.showMessageDialog(this, "Verificar la fecha");
            }else if(usuario.validarNumeroDePersonal(numeroDePersonal)== false){
                JOptionPane.showMessageDialog(this, "Verificar numero de personal");
            }else if(usuario.validarCURP(curp)==false){
@@ -220,10 +222,50 @@ public class RegistrarProfesor extends javax.swing.JFrame {
             profesor.guardarDocente(numeroDePersonal, nombreProfesor, apellidoMaterno, apellidoPaterno, curp, rfc, fechaNacimiento, genero, contraseña, correo);
             JOptionPane.showMessageDialog(this, "Registro exitoso");
             regresarAPantallaInicialAdministrador();
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo obtener información necesaria. Intente más tarde.");
+            Logger.getLogger(RegistrarProfesor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(SQLException ex){
+            if(ex.getErrorCode() == 1062 ){
+                JOptionPane.showMessageDialog(this, "Número de personal ya está en uso");
+                Logger.getLogger(RegistrarProfesor.class.getName()).log(Level.SEVERE, null, ex);
+            }else{
+                JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
+                Logger.getLogger(RegistrarProfesor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    void validarInformaciónRepetida(){
+        curp = jTextFieldCURP.getText();
+        int iterador = 0;
+        int tamañoDeLista = 0;
+        boolean curpRegistrada = false;
+        ArrayList<String> todasLasCurp = new ArrayList();
+        try {
+            DocenteDAO obtenerCurpDocente = new DocenteDAO();
+            todasLasCurp = obtenerCurpDocente.leerTodosLosDocentes();
+            tamañoDeLista = todasLasCurp.size();
+            while(iterador<tamañoDeLista){
+                if(!(curp).equals(todasLasCurp.get(iterador))){
+                    curpRegistrada = false; 
+                }else if((curp).equals(todasLasCurp.get(iterador))){
+                    curpRegistrada = true;
+                    break;
+                }
+                iterador++;
+            }
+            if(curpRegistrada == true){
+                JOptionPane.showMessageDialog(this, "Ya existe un registro de ese usuario");
+                regresarAPantallaInicialAdministrador();
+            }else{
+                guardarProfesor(numeroDePersonal, nombreProfesor, apellidoMaterno, apellidoPaterno, curp, rfc, fechaNacimiento, genero, contraseña, correo);     
+            }   
         } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
+            JOptionPane.showMessageDialog(this, "No fue posible obtener información necesaria para el registro, intente más tarde");
             Logger.getLogger(RegistrarProfesor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     void regresarAPantallaInicialAdministrador(){

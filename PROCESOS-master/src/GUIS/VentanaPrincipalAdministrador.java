@@ -167,7 +167,7 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
-    ArrayList <Docente> todosLosDocentes = new ArrayList();
+    ArrayList <String> todosLosDocentes = new ArrayList();
         
     public void obtenerTodosLosProfesores(){
         DocenteDAO docente = new DocenteDAO();
@@ -182,7 +182,7 @@ public class VentanaPrincipalAdministrador extends javax.swing.JFrame {
             Logger.getLogger(VentanaPrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex2);
         }
     }
-    void validarPrecondiciones(ArrayList<Docente> todosLosDocentes){
+    void validarPrecondiciones(ArrayList<String> todosLosDocentes){
       int numeroMaximoDeProfesores = 2;
       if(todosLosDocentes.size() < numeroMaximoDeProfesores){
         RegistrarProfesor irARegistrarProfesor = new RegistrarProfesor();
