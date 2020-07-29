@@ -14,16 +14,14 @@ import java.util.Date;
 public class PlanDeCurso {
         
     String curso;
-    String nombrePlan;
     String fechaInicio;
     String fechaFin;
     String temas;
     String fechaTemas; 
     String nombreActividades;
     
-    public PlanDeCurso (String curso, String nombrePlan, String fechaInicio, String fechaFin, String temas, String fechaTemas, String nombreActividades) {
+    public PlanDeCurso (String curso, String fechaInicio, String fechaFin, String temas, String fechaTemas, String nombreActividades) {
         this.curso = curso;
-        this.nombrePlan = nombrePlan;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.temas = temas;
@@ -40,14 +38,6 @@ public class PlanDeCurso {
     
     public void setCurso(String curso){
         this.curso = curso;
-    }
-    
-    public String getNombrePlan(){
-        return nombrePlan;
-    }
-    
-    public void setNombrePlan (String nombrePlan){
-        this.nombrePlan = nombrePlan;
     }
     
     public String getFechaInicio(){

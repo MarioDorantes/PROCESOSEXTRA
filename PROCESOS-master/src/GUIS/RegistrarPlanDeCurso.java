@@ -19,8 +19,7 @@ import javax.swing.JOptionPane;
 
 public class RegistrarPlanDeCurso extends javax.swing.JFrame {
 
-    String curso1;
-    Curso curso;
+    String curso1; 
     PlanDeCurso planDeCurso;
     PlanDeCursoDAO planDeCursoDAO;
     
@@ -56,8 +55,6 @@ public class RegistrarPlanDeCurso extends javax.swing.JFrame {
         jLabelSeccionesRegistroPlanDeCurso = new javax.swing.JLabel();
         jLabelTemas = new javax.swing.JLabel();
         jTextFieldFechaFin = new javax.swing.JTextField();
-        jLabelNombrePlan = new javax.swing.JLabel();
-        jTextFieldNombrePlan = new javax.swing.JTextField();
         jLabelFechaInicio = new javax.swing.JLabel();
         jTextFieldFechaInicio = new javax.swing.JTextField();
 
@@ -125,7 +122,7 @@ public class RegistrarPlanDeCurso extends javax.swing.JFrame {
 
         jLabelFechaFin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelFechaFin.setText("Fecha Fin:");
-        getContentPane().add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        getContentPane().add(jLabelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLabelSeccionesRegistroPlanDeCurso.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabelSeccionesRegistroPlanDeCurso.setText(" Registro Plan de Curso");
@@ -134,17 +131,12 @@ public class RegistrarPlanDeCurso extends javax.swing.JFrame {
         jLabelTemas.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelTemas.setText("Temas del curso: ");
         getContentPane().add(jLabelTemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
-        getContentPane().add(jTextFieldFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 180, 30));
-
-        jLabelNombrePlan.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabelNombrePlan.setText("Nombre Plan de Curso:");
-        getContentPane().add(jLabelNombrePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
-        getContentPane().add(jTextFieldNombrePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 240, 30));
+        getContentPane().add(jTextFieldFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 180, 30));
 
         jLabelFechaInicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelFechaInicio.setText("Fecha Inicio:");
-        getContentPane().add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
-        getContentPane().add(jTextFieldFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 160, 30));
+        getContentPane().add(jLabelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        getContentPane().add(jTextFieldFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 160, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -202,22 +194,21 @@ public class RegistrarPlanDeCurso extends javax.swing.JFrame {
     
     void llenarPlanDeCurso() {
        
-       String nombrePlan = jTextFieldNombrePlan.getText();
        String fechaInicio = jTextFieldFechaInicio.getText();
        String fechaFin = jTextFieldFechaFin.getText();
        String temas = jTextAreaTemas.getText();
        String fechaTemas = jTextAreaFechaTemas.getText();
        String nombreActividades = jTextAreaNombreDeActividades.getText();
-       planDeCurso = new PlanDeCurso(curso1, nombrePlan, fechaInicio, fechaFin, temas, fechaTemas, nombreActividades);
+       planDeCurso = new PlanDeCurso(curso1, fechaInicio, fechaFin, temas, fechaTemas, nombreActividades);
     }
     
     String fechaInicio = "";
     String fechaFin = "";
     
     void validarCampos(){
-        if(jTextFieldNombrePlan.getText() .isEmpty() || jTextFieldFechaInicio.getText(). isEmpty() 
-                || jTextFieldFechaFin.getText() . isEmpty() || jTextAreaTemas.getText() .isEmpty() 
-                    || jTextAreaFechaTemas.getText() . isEmpty() || jTextAreaNombreDeActividades.getText() .isEmpty()){
+        if(jTextFieldFechaInicio.getText(). isEmpty() || jTextFieldFechaFin.getText() . isEmpty() 
+                || jTextAreaTemas.getText() .isEmpty() || jTextAreaFechaTemas.getText() . isEmpty() 
+                    || jTextAreaNombreDeActividades.getText() .isEmpty()){
             
             JOptionPane.showMessageDialog(this, "Favor de no dejar campos vacíos");
             
@@ -274,7 +265,6 @@ public class RegistrarPlanDeCurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFechaInicio;
     private javax.swing.JLabel jLabelFechaTemas;
     private javax.swing.JLabel jLabelNombreDeActividades;
-    private javax.swing.JLabel jLabelNombrePlan;
     private javax.swing.JLabel jLabelSeccionesRegistroPlanDeCurso;
     private javax.swing.JLabel jLabelTemas;
     private javax.swing.JScrollPane jScrollPane1;
@@ -285,6 +275,5 @@ public class RegistrarPlanDeCurso extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaTemas;
     private javax.swing.JTextField jTextFieldFechaFin;
     private javax.swing.JTextField jTextFieldFechaInicio;
-    private javax.swing.JTextField jTextFieldNombrePlan;
     // End of variables declaration//GEN-END:variables
 }

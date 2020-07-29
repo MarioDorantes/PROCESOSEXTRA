@@ -23,38 +23,16 @@ public class PlanDeCursoDAO implements IPlanDeCursoDAO {
     @Override
     public void guardarPlanDeCurso(PlanDeCurso planDeCurso) throws SQLException, ClassNotFoundException {
         connection = connectDB.getConnection();
-        String query = "INSERT INTO planDeCurso (curso, nombrePlan, fechaInicio, fechaFin, temas, fechaTemas, nombreActividades) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO planDeCurso (curso, fechaInicio, fechaFin, temas, fechaTemas, nombreActividades) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1,planDeCurso.getCurso());
-        statement.setString(2,planDeCurso.getNombrePlan());
-        statement.setString(3,planDeCurso.getFechaInicio());
-        statement.setString(4,planDeCurso.getFechaFin());
-        statement.setString(5,planDeCurso.getTemas());
-        statement.setString(6,planDeCurso.getFechaTemas());
-        statement.setString(7,planDeCurso.getNombreActividades());
+        statement.setString(2,planDeCurso.getFechaInicio());
+        statement.setString(3,planDeCurso.getFechaFin());
+        statement.setString(4,planDeCurso.getTemas());
+        statement.setString(5,planDeCurso.getFechaTemas());
+        statement.setString(6,planDeCurso.getNombreActividades());
         statement.executeUpdate();
     }
-    
-    public ArrayList<PlanDeCurso> leerTodosLosPlanes() throws SQLException, ClassNotFoundException{
-        connection = connectDB.getConnection();
-        PlanDeCurso planDeCurso = null;
-        ArrayList<PlanDeCurso> todosLosPlanes = new ArrayList<PlanDeCurso>();
-        String query = "SELECT * FROM planDeCurso";
-        PreparedStatement statement = connection.prepareStatement(query);
-        results = statement.executeQuery();
-        while (results.next()) {
-            planDeCurso = new PlanDeCurso();
-            planDeCurso.setCurso(results.getString("curso"));
-            planDeCurso.setNombrePlan(results.getString("nombrePlan"));
-            planDeCurso.setFechaInicio(results.getString("fechaInicio"));
-            planDeCurso.setFechaFin(results.getString("fechaFin"));
-            planDeCurso.setTemas(results.getString("temas"));
-            planDeCurso.setFechaTemas(results.getString("fechaTemas"));
-            planDeCurso.setNombreActividades(results.getString("nombreActividades"));
-            todosLosPlanes.add(planDeCurso);
-        }
-        return todosLosPlanes;
-    }
-    
+      
         
 }
