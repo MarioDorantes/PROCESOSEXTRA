@@ -29,12 +29,12 @@ public class RegistrarAvanceDeCurso extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Registrar Avance de Curso");
-        try {
+        /*try {
             leerPlanesDeCursos();
         } catch (SQLException | ClassNotFoundException sqlException) {
             JOptionPane.showMessageDialog(this, "No se puede acceder a la base de datos en este momento. Intente más tarde.");
             sqlException.printStackTrace();
-        }
+        }*/
     }
 
     @SuppressWarnings("unchecked")
@@ -172,7 +172,7 @@ public class RegistrarAvanceDeCurso extends javax.swing.JFrame {
         dispose();
     } 
     
-    void leerPlanesDeCursos() throws SQLException, ClassNotFoundException {
+    /*void leerPlanesDeCursos() throws SQLException, ClassNotFoundException {
                
         int i = 0;
         PlanDeCursoDAO planDeCursoDAO = new PlanDeCursoDAO();
@@ -189,7 +189,7 @@ public class RegistrarAvanceDeCurso extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, jComboBoxListaDePlanes, "Registrar Avance de Curso", JOptionPane.QUESTION_MESSAGE);
         plan1 = (String) jComboBoxListaDePlanes.getSelectedItem();
         
-    }
+    }*/
     
     void llenarAvanceDePlanDeCurso() {
        

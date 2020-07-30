@@ -191,7 +191,7 @@ public class RegistrarProfesor extends javax.swing.JFrame {
                              && (usuario.validarNumeroDePersonal(numeroDePersonal)== true) && (usuario.validarCURP(curp)==true)
                                     && (usuario.validarGenero(genero)==true) && (usuario.validarCorreo(correo) == true)
                                             && (usuario.validarContraseña(contraseña)==true) && (usuario.validarRFC(rfc)==true)){
-                                                    validarInformaciónRepetida();
+                                                    compararCurpConRfc();
            }else if(usuario.validarNombre(nombreProfesor) == false){
                JOptionPane.showMessageDialog(this, "Verificar nombre");
            }else if(usuario.validarNombre(apellidoPaterno)==false){
@@ -266,6 +266,18 @@ public class RegistrarProfesor extends javax.swing.JFrame {
             Logger.getLogger(RegistrarProfesor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+     void compararCurpConRfc(){
+        String curpIngresada = jTextFieldCURP.getText();
+        String rfcIngresado = jTextFieldRFC.getText();
+        String subCadenaDeCurp = curpIngresada.substring(0, 10);
+        String subCadenaDeRfc = rfcIngresado.substring(0, 10);
+        if (subCadenaDeCurp.equals(subCadenaDeRfc)){
+            validarInformaciónRepetida();
+        }else{
+            JOptionPane.showMessageDialog(this, "Los primeros 10 caracteres de la CURP y el RFC deben de coincidir, verifique por favor");
+        }
     }
     
     void regresarAPantallaInicialAdministrador(){
